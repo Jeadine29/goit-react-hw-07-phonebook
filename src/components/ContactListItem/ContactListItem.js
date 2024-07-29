@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ContactListItem.module.css';
 
-
 const ContactListItem = ({ id, name, number, onDelete }) => (
   <li className={styles.item}>
     {name}: {number}

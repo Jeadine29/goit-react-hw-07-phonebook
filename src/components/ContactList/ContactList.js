@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ContactListItem from '../ContactListItem/ContactListItem';
 import styles from './ContactList.module.css';
 
-
 const ContactList = ({ contacts, onDeleteContact }) => (
   <ul className={styles.list}>
     {contacts.map(({ id, name, number }) => (
@@ -12,7 +11,7 @@ const ContactList = ({ contacts, onDeleteContact }) => (
         id={id}
         name={name}
         number={number}
-        onDeleteContact={onDeleteContact}
+        onDelete={onDeleteContact}
       />
     ))}
   </ul>
