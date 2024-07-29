@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './redux/store';
-import App from './components/App/App'; // Adjusted import path
+import App from './components/App/App'; // Ensure this path is correct
 import './index.css';
 
 ReactDOM.render(
@@ -14,4 +14,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
