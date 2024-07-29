@@ -1,11 +1,11 @@
-// components/App/App.js
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
-import { fetchAll, addContact, deleteContact } from '../../redux/operations'; // Import missing actions
-import { selectIsLoading, selectError, selectFilteredContacts } from '../../redux/selectors';
+import { fetchAll, addContact, deleteContact } from '../../redux/operations';
+import { selectIsLoading, selectError, selectFilteredContacts, selectFilter } from '../../redux/selectors';
+import { setFilter } from '../../redux/filterSlice';
 import styles from './App.module.css';
 
 const App = () => {
@@ -13,6 +13,7 @@ const App = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const contacts = useSelector(selectFilteredContacts);
+  const filter = useSelector(selectFilter);
 
   useEffect(() => {
     dispatch(fetchAll());
@@ -26,12 +27,16 @@ const App = () => {
     dispatch(deleteContact(id));
   };
 
+  const handleFilterChange = (e) => {
+    dispatch(setFilter(e.target.value));
+  };
+
   return (
     <div className={styles.container}>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={handleAddContact} />
       <h2>Contacts</h2>
-      <Filter />
+      <Filter value={filter} onChange={handleFilterChange} />
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <ContactList contacts={contacts} onDeleteContact={handleDeleteContact} />
